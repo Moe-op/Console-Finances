@@ -90,49 +90,44 @@ var finances = [
 var totalMonths = 0;
 var totalPoL = 0;
 var averages = [];
-var countAvg;
+var countAvg = finances[0][1]; 
 
 var vTotal = 0;
-var greatest = [[]];
-var lowest = [[]];
+var greatest = ['', 0]; 
+var lowest = ['', 0]; 
 
-greatest[0][1] = 0;
-lowest[0][1] = 0;
-
-for (i = 0, i < finances.length; i++;){
+for (var i = 0; i < finances.length; i++) { 
   totalMonths++;
-  totalPoL = totalPoL + finances[i][1]
+  totalPoL = totalPoL + finances[i][1];
 
-  if (countAvg !== finances[i][1]) {
-  averages.push (finances[i][1] - countAvg);
-  countAvg !== finances[i][1];
-}
-else{
-  countAvg = finances[i][1];
-}
+  // Calculate the difference and store it in the averages array
+  averages.push(finances[i][1] - countAvg);
+  countAvg = finances[i][1]; 
+
+  // greatest and lowest values
+  if (averages[i] > greatest[1]) {
+    greatest[1] = averages[i];
+    greatest[0] = finances[i][0];
+  }
+
+  if (averages[i] < lowest[1]) {
+    lowest[1] = averages[i];
+    lowest[0] = finances[i][0];
+  }
 }
 
 var newTotal = 0;
-for (i = 0; i < averages.length; i++){
-  newTotal += averages [i];
+for (var i = 0; i < averages.length; i++) {
+  newTotal += averages[i];
 }
 
-for (i = 0; i < averages.length; i++){
-  finances[i][1] = averages[i];
+vTotal = newTotal / (totalMonths - 1); 
 
-  if (averages[i] > greatest[0][1]) {
-    greatest[0][1] = averages[i];
-    greatest[0][0] = finances[i][0];
-  }
+console.log("Total Months: " + totalMonths);
+console.log("Total: $" + totalPoL);
+console.log("Average Change: $" + vTotal.toFixed(2));
+console.log("Greatest Increase in Profits/Losses: " + greatest[0] + "($" + greatest[1] + ")");
+console.log("Greatest Decrease in Profits/Losses: " + lowest[0] + "($" + lowest[1] + ")");
 
-  if (averages[i] < lowest[0][1]){
-    lowest[0][1] = averages[i];
-    lowest[0][0] = finances[i][0];
-  }
-  }
-
-console.log("total Months:" + totalMonths);
-console.log("total: $" + totalPoL);
-vTotal - newTotal/(totalMonths-1);
 
 
