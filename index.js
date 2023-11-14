@@ -131,4 +131,8 @@ for (i = 0; i < averages.length; i++){
   }
   }
 
-console.log("Total Months:" + totalMonths);
+console.log("total Months:" + totalMonths);
+console.log("total: $" + totalPoL);
+vTotal - newTotal/(totalMonths-1);
+
+
